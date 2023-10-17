@@ -23,7 +23,7 @@ class Channel:
         self.id = self.info["items"][0]["id"]
         self.title = self.info["items"][0]["snippet"]["title"]
         self.overview = self.info["items"][0]["snippet"]["description"]
-        self.url = self.info["items"][0]["snippet"]["thumbnails"]["default"]["url"]
+        self.url = 'https://www.youtube.com/channel/' + self.info['items'][0]['id']
         self.count_subscribe = self.info["items"][0]["statistics"]["subscriberCount"]
         self.video_count = self.info["items"][0]["statistics"]["videoCount"]
         self.video_count = self.info["items"][0]["statistics"]["viewCount"]
@@ -40,7 +40,9 @@ class Channel:
 
     @classmethod
     def get_service(cls):
-        return cls
+        """Возвращает объект для работы с YouTube API"""
+        youtube = build('youtube', 'v3', developerKey=cls.api_key)
+        return youtube
 
 
     def to_json(self, path):
@@ -53,3 +55,9 @@ class Channel:
 
     def channel_id(self):
         return self.__channel_id
+
+    @channel_id.setter
+
+
+    def channel_id(self, data):
+        print("AttributeError: property 'channel_id' of 'Channel' object has no setter")
